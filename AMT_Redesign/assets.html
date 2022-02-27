@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-sscale=1.0">
+    <title>AMT Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.14/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
+    
+
+
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="">
+                        <span class="icon"><ion-icon name="business-outline"></ion-icon></span>
+                        <span class="title">Mindworx</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="index.html">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="icon"><ion-icon name="laptop-outline"></ion-icon></span>
+                        <span class="title">Assets</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                        <span class="title">Users</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                        <span class="title">Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- main -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                    </div>
+                    <!-- search -->
+                <div class="search">
+                    
+                </div>
+                    <!-- userImg -->
+                <div class="user">
+                    <img src="user.png">
+                </div>
+            </div>
+
+            
+
+            <!-- Assets list -->
+            <div class="assetsdetails">
+                <div class="assets">
+                    <div class="cardHeader">
+                        <h2>Assets</h2>
+                        <a href="#" class="btn">Add New Asset</a>
+                    </div>
+                    <div id="assetsTable">
+                        <table id="aTable" class="table table-striped table-bordered"> 
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Serial Number</th>
+                                    <th>Model</th>
+                                    <th>Description</th>
+                                    <th>Assigned To</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>  
+                            
+                        </table>
+                    </div>
+                </div>
+                
+            </div>       
+
+        </div>
+
+        
+
+    </div>
+    <script>
+        // MenuToggle
+        let toggle = document.querySelector('.toggle');
+        let navigation = document.querySelector('.navigation');
+        let main = document.querySelector('.main');
+        toggle.onclick = function(){
+        navigation.classList.toggle('active');
+        main.classList.toggle('active');
+        }
+
+        var results = [{"id":1, "serialnumber":"ABC12F1", "model":"Lenovo T470s", "description":"ThinkPad Laptop", "assignedto":"Nkosikhona Mngoma", "status":"Checked out"},
+                    {"id":2, "serialnumber":"ABC12F2", "model":"Lenovo T470s", "description":"ThinkPad Laptop", "assignedto":"Thabo Moloi", "status":"Broken"},
+                    {"id":3, "serialnumber":"ABC12F3", "model":"Lenovo T470s", "description":"ThinkPad Laptop", "assignedto":"Tshepo Mvimbi", "status":"Available"},
+                    {"id":4, "serialnumber":"ABC12F4", "model":"Lenovo T470s", "description":"SIM Card", "assignedto":"Zu Siswana", "status":"Checked out"},
+                    {"id":5, "serialnumber":"ABC12F5", "model":"Lenovo T470s", "description":"ThinkPad Laptop", "assignedto":"Cleo Phillips", "status":"Checked out"},
+                    {"id":6, "serialnumber":"ABC12F6", "model":"Lenovo T470s", "description":"ThinkPad Laptop", "assignedto":"Tristan Jacobs", "status":"Available"},
+                    {"id":7, "serialnumber":"ABC12F7", "model":"Lenovo T470s", "description":"SIM Card", "assignedto":"Mfundo Ceba", "status":"Checked out"},
+                    {"id":8, "serialnumber":"ABC12F8", "model":"Lenovo T470s", "description":"ThinkPad Laptop", "assignedto":"Mpho Kekana", "status":"Available"},
+                    {"id":9, "serialnumber":"ABC12F9", "model":"Lenovo T470s", "description":"ThinkPad Laptop", "assignedto":"Alisha Keys", "status":"Available"},
+                    {"id":10, "serialnumber":"ABC12F10", "model":"Lenovo T470s", "description":"ThinkPad Laptop", "assignedto":"Drake Graham", "status":"Available"},
+                    {"id":11, "serialnumber":"ABC12F11", "model":"Lenovo T470s", "description":"ThinkPad Laptop", "assignedto":"Nathan Cammay", "status":"Checked out"},
+                    {"id":12, "serialnumber":"ABC12F12", "model":"Lenovo T470s", "description":"ThinkPad Laptop", "assignedto":"", "status":"Available"},
+                    {"id":13, "serialnumber":"ABC12F13", "model":"Lenovo T470s", "description":"ThinkPad Laptop", "assignedto":"Philly Duma", "status":"Checked out"},
+                    {"id":14, "serialnumber":"ABC12F14", "model":"Lenovo T470s", "description":"ThinkPad Laptop", "assignedto":"", "status":"Available"},
+                    {"id":15, "serialnumber":"ABC12F15", "model":"Lenovo T470s", "description":"ThinkPad Laptop", "assignedto":"Sthe Ndumo", "status":"Checked out"},
+                    {"id":16, "serialnumber":"ABC12F16", "model":"Lenovo T470s", "description":"ThinkPad Laptop", "assignedto":"Olwethu Ngesi", "status":"Checked out"},
+                    {"id":17, "serialnumber":"ABC12F17", "model":"Lenovo T470s", "description":"ThinkPad Laptop", "assignedto":"", "status":"Available"},
+                    {"id":18, "serialnumber":"ABC12F18", "model":"Lenovo T470s", "description":"ThinkPad Laptop", "assignedto":"Princess Sibanda", "status":"Checked out"},
+                    {"id":19, "serialnumber":"ABC12F19", "model":"Lenovo T470s", "description":"ThinkPad Laptop", "assignedto":"", "status":"Available"},
+                    {"id":20, "serialnumber":"ABC12F20", "model":"Lenovo T470s", "description":"ThinkPad Laptop", "assignedto":"", "status":"Due For Repairs"}]
+
+    //     const renderTableData = (result) => {
+    //         return result.map((item, index) => {
+    //             return `<tr>
+    //                 <td >${item.id}</td>
+    //                 <td >${item.serialnumber}</td>
+    //                 <td >${item.model}</td>
+    //                 <td >${item.description}</td>
+    //                 <td >${item.assignedto}</td>
+    //                 <td >${item.status}</td>
+    //             </tr>`;
+    //         }).join('');
+    //     }
+
+
+    // const dataBinding = (result) => {
+    //     let x = document.getElementById("aTable");
+    //     x.innerHTML = renderTableData(result);
+    // }
+
+    $(document).ready(function() {
+        $("#aTable").DataTable({
+    				data:results,
+    				"columns":[
+    					{"data":"id"},
+    					{"data":"serialnumber"},
+    					{"data":"model"},
+    					{"data":"description"},
+                        {"data":"assignedto"},
+                        {"data":"status"},
+                        { 'data': null, title: 'Action', wrap: true, "render": function (item) { 
+                            return '<div class="btn-group"> <button type="button" onclick="set_value(' + item.ID + ')" value="0" class="btn btn-warning" data-toggle="modal" data-target="#myModal"><ion-icon name="create-outline"></ion-icon></button>  <button type="button" onclick="delete_value(' + item.ID + ')" value="0" class="btn btn-warning" ><ion-icon name="trash-outline"></ion-icon></button></div>' } },
+
+                        
+    				]
+    			 });
+    } );
+
+   //
+
+        // add hovered class in selected list item
+        let list = document.querySelectorAll('.navigation li');
+       function activelink(){
+          list.forEach((item) =>
+          item.classList.remove('hovered'));
+          this.classList.add('hovered');
+       }       
+        list.forEach((item) =>
+        item.addEventlistener('mouseover', activelink));
+
+        
+    </script>
+     
+    
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
